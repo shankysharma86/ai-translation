@@ -1,0 +1,40 @@
+# Imports the Google Cloud Translation library
+from google.cloud import translate
+
+# Initialize Translation client
+def translate_document(
+    text: str = "YOUR_TEXT_TO_TRANSLATE", project_id: str = "YOUR_PROJECT_ID", source_lang: str = "", target_lang: str = ""
+) -> translate.TranslationServiceClient:
+    """Translating Document."""
+
+    client = translate.TranslationServiceClient()
+
+
+    location = "global"
+
+    parent = f"projects/{project_id}/locations/{location}"
+
+    translate.DocumentInputConfig(
+        request={
+            
+        }
+    )
+
+    # Translate text from English to French
+    # Detail on supported types can be found here:
+    # https://cloud.google.com/translate/docs/supported-formats
+    response = client.translate_document(
+        request={
+            "parent": parent,
+            "contents": [text],
+            "mime_type": "application/pdf",  # mime types: text/plain, text/html
+            "source_language_code": source_lang,
+            "target_language_code": target_lang,
+        }
+    )
+
+    # Display the translation for each input text provided
+    for translation in response.translations:
+        print(f"Translated text: {translation.translated_text}")
+
+    return response
