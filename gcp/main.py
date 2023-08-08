@@ -1,4 +1,5 @@
 import texttranslation
+import doctranslation
 import argparse
 
 argParser = argparse.ArgumentParser()
@@ -15,4 +16,5 @@ print("args.translatetext=%s" % args.translatetext)
 print("args.sourcelang=%s" % args.sourcelang)
 print("args.targetlang=%s" % args.targetlang)
 
-texttranslation.translate_text(args.translatetext, args.projectid, args.sourcelang, args.targetlang)
+# texttranslation.translate_text(args.translatetext, args.projectid, args.sourcelang, args.targetlang)
+doctranslation.translate_document(args.projectid, args.sourcelang, args.targetlang)
